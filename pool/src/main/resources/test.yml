@@ -1,0 +1,6 @@
+nederlands:
+  hello_world: "Hallo Wereld"
+  bye_world: "Doei Wereld"
+english:
+  hello_world: "Hello World"
+  bye_world: "Bye World"

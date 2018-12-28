@@ -1,0 +1,36 @@
+# Binaries
+*.7z
+*.dmg
+*.gz
+*.iso
+*.jar
+*.rar
+*.tar
+*.zip
+*.war
+*.ear
+*.sar
+*.class
+
+# IntelliJ
+*.iml
+*.iws
+*.ipr
+.idea/
+
+# Eclipse
+.settings/
+.classpath
+.project
+
+# NetBeans
+nbproject/private/
+build/
+nbbuild/
+dist/
+nbdist/
+nbactions.xml
+nb-configuration.xml
+
+# Maven
+target/

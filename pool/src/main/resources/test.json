@@ -1,0 +1,18 @@
+{
+  "nederlands": {
+    "hello_world": "Hallo Wereld",
+    "bye_world": "Doei Wereld",
+    "color": "%%color%% is een kleur",
+    "blue": "Blauw",
+    "red": "Rood",
+    "random": "%%hello_world%%: %%red%% %%value%% %%nothing%%"
+  },
+  "english": {
+    "hello_world": "Hello World",
+    "bye_world": "Bye World",
+    "color": "%%color%% is a color",
+    "blue": "Blue",
+    "red": "Red",
+    "random": "%%hello_world%%: %%red%% %%value%% %%nothing%%"
+  }
+}
