@@ -6,12 +6,13 @@ import com.gmail.chickenpowerrr.langue.core.update.updates.AddTranslationsUpdate
 import com.gmail.chickenpowerrr.langue.core.update.updates.DeleteLanguagesUpdate;
 import com.gmail.chickenpowerrr.langue.core.update.updates.DeleteTranslationsUpdate;
 
+import java.io.Closeable;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.stream.Collectors;
 
-public class LanguageResourceUpdater {
+public class LanguageResourceUpdater implements Closeable {
 
     private final String[] channels;
 
@@ -45,5 +46,10 @@ public class LanguageResourceUpdater {
         for(String channel : this.channels) {
             LanguageResourceUpdateManager.getInstance().update(channel, new DeleteTranslationsUpdate(messageKeys));
         }
+    }
+
+    @Override
+    public void close() {
+
     }
 }

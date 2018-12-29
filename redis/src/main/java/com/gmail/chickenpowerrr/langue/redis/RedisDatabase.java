@@ -17,8 +17,6 @@ public class RedisDatabase implements Closeable {
 
         this.jedisPool = new JedisPool(jedisPoolConfig, credentials.getString("host"),
                 credentials.getInt("port"));
-
-
     }
 
     public Jedis getJedis() {
