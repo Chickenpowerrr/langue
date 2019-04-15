@@ -9,6 +9,12 @@ import java.util.Map;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+/**
+ * This class handles the placeholders in translatable messages
+ *
+ * @author Chickenpowerrr
+ * @since 1.0.0
+ */
 public class PlaceholderManager {
 
   private static PlaceholderManager instance;
@@ -17,6 +23,12 @@ public class PlaceholderManager {
   private final PlaceholderPattern placeholderPattern;
   private final Map<String, String> staticPlaceholders;
 
+  /**
+   * Creates an instance based on the format of a placeholder and the default placeholders
+   *
+   * @param placeholderPattern the format of a placeholder
+   * @param staticPlaceholders the default placeholders that should always get handled the same
+   */
   public PlaceholderManager(PlaceholderPattern placeholderPattern,
       Map<String, String> staticPlaceholders) {
     this.placeholderPattern =
@@ -25,18 +37,32 @@ public class PlaceholderManager {
     this.regexPattern = this.placeholderPattern.toRegexPattern();
   }
 
+  /**
+   * Creates an instance based on the format of a placeholder
+   *
+   * @param placeholderPattern the format of a placeholder
+   */
   public PlaceholderManager(PlaceholderPattern placeholderPattern) {
     this(placeholderPattern, new HashMap<>());
   }
 
+  /**
+   * Creates an instance based on the following placeholder pattern: %%placeholder%%
+   */
   public PlaceholderManager() {
     this(new PlaceholderPattern("%%", "%%"), new HashMap<>());
   }
 
-  public static PlaceholderManager getInstance() {
-    return instance == null ? instance = new PlaceholderManager() : instance;
-  }
-
+  /**
+   * Replaces the placeholders in a given message, if the placeholder is not given in the Map, the
+   * next step is to look if the placeholder is translatable
+   *
+   * @param message the message that could contain placeholders
+   * @param language the language the translatable placeholders should get translated to
+   * @param messagePlaceholders the placeholders that should get set (e.g. a number or a player
+   * name)
+   * @return the message with the replaced placeholders
+   */
   public String replacePlaceholders(String message, ResourceLanguage language,
       Map<String, String> messagePlaceholders) {
     Collection<String> knownPlaceholders = getPlaceholders(message);
@@ -60,10 +86,22 @@ public class PlaceholderManager {
     return message;
   }
 
+  /**
+   * Replaces the static placeholders in the given message
+   *
+   * @param message the message that could contain static placeholders
+   * @return the message with the replaced placeholders
+   */
   public String replacePlaceholders(String message) {
     return replacePlaceholders(message, null, null);
   }
 
+  /**
+   * Get all placeholders a given String contains
+   *
+   * @param message the message which placeholders need to be determined
+   * @return all placeholders the given String contains
+   */
   private Collection<String> getPlaceholders(String message) {
     Collection<String> placeholders = new HashSet<>();
     Matcher matcher = this.regexPattern.matcher(message);
