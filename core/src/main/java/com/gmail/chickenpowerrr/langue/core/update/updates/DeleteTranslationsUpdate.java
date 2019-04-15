@@ -8,9 +8,9 @@ import java.util.Collections;
 @AllArgsConstructor
 public class DeleteTranslationsUpdate implements Update {
 
-    private final Collection<String> messageKeys;
+  private final Collection<String> messageKeys;
 
-    public Collection<String> getMessageKeys() {
-        return Collections.unmodifiableCollection(this.messageKeys);
-    }
+  public Collection<String> getMessageKeys() {
+    return Collections.unmodifiableCollection(this.messageKeys);
+  }
 }

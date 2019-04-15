@@ -15,24 +15,25 @@ import java.util.stream.Collectors;
 
 public class JsonFile {
 
-    private final File file;
-    private final Gson gson = new Gson();
+  private final File file;
+  private final Gson gson = new Gson();
 
-    public JsonFile(LanguageResourceCredentials credentials) {
-        this.file = new File(credentials.getString("fileLocation"));
+  public JsonFile(LanguageResourceCredentials credentials) {
+    this.file = new File(credentials.getString("fileLocation"));
+  }
+
+  public Map<String, ResourceLanguage> getLanguages() {
+    try (FileReader fileReader = new FileReader(this.file)) {
+      Type type = new TypeToken<Map<String, Map<String, String>>>() {
+      }.getType();
+      Map<String, Map<String, String>> resourceLanguages = this.gson.fromJson(fileReader, type);
+
+      return resourceLanguages.entrySet().stream()
+          .map(entry -> new HashMap.SimpleEntry<>(entry.getKey(),
+              new ResourceLanguage(entry.getKey(), resourceLanguages.get(entry.getKey()))))
+          .collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue));
+    } catch (IOException e) {
+      throw new RuntimeException(e);
     }
-
-    public Map<String, ResourceLanguage> getLanguages() {
-        try(FileReader fileReader = new FileReader(this.file)) {
-            Type type = new TypeToken<Map<String, Map<String, String>>>(){}.getType();
-            Map<String, Map<String, String>> resourceLanguages = this.gson.fromJson(fileReader, type);
-
-            return resourceLanguages.entrySet().stream()
-                    .map(entry -> new HashMap.SimpleEntry<>(entry.getKey(),
-                            new ResourceLanguage(entry.getKey(), resourceLanguages.get(entry.getKey()))))
-                    .collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue));
-        } catch(IOException e) {
-            throw new RuntimeException(e);
-        }
-    }
+  }
 }

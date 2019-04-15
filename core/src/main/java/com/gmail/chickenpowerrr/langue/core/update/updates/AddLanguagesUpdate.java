@@ -9,9 +9,9 @@ import java.util.Map;
 @AllArgsConstructor
 public class AddLanguagesUpdate implements Update {
 
-    private final Map<String, ResourceLanguage> languages;
+  private final Map<String, ResourceLanguage> languages;
 
-    public Map<String, ResourceLanguage> getLanguages() {
-        return Collections.unmodifiableMap(this.languages);
-    }
+  public Map<String, ResourceLanguage> getLanguages() {
+    return Collections.unmodifiableMap(this.languages);
+  }
 }

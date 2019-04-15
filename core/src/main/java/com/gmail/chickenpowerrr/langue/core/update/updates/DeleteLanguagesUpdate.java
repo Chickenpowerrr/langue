@@ -8,9 +8,9 @@ import java.util.Collections;
 @AllArgsConstructor
 public class DeleteLanguagesUpdate implements Update {
 
-    private final Collection<String> languages;
+  private final Collection<String> languages;
 
-    public Collection<String> getLanguages() {
-        return Collections.unmodifiableCollection(this.languages);
-    }
+  public Collection<String> getLanguages() {
+    return Collections.unmodifiableCollection(this.languages);
+  }
 }

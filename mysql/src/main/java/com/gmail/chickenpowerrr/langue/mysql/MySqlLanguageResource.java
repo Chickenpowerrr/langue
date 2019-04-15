@@ -8,18 +8,19 @@ import java.util.function.Function;
 
 public class MySqlLanguageResource extends LanguageResource {
 
-    private final MySqlDatabase mySqlDatabase;
+  private final MySqlDatabase mySqlDatabase;
 
-    public MySqlLanguageResource(PlaceholderManager placeholderManager, Function<String, String> formatter,
-                                 LanguageResourceCredentials credentials) {
-        super(placeholderManager, formatter, null);
-        this.mySqlDatabase = new MySqlDatabase(credentials);
+  public MySqlLanguageResource(PlaceholderManager placeholderManager,
+      Function<String, String> formatter,
+      LanguageResourceCredentials credentials) {
+    super(placeholderManager, formatter, null);
+    this.mySqlDatabase = new MySqlDatabase(credentials);
 
-        super.languages = this.mySqlDatabase.getLanguages();
-    }
+    super.languages = this.mySqlDatabase.getLanguages();
+  }
 
-    @Override
-    public void reload() {
-        super.languages = this.mySqlDatabase.getLanguages();
-    }
+  @Override
+  public void reload() {
+    super.languages = this.mySqlDatabase.getLanguages();
+  }
 }

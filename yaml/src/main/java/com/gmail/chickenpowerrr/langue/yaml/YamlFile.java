@@ -14,21 +14,21 @@ import java.util.stream.Collectors;
 
 public class YamlFile {
 
-    private final File file;
-    private final Yaml yaml = new Yaml();
+  private final File file;
+  private final Yaml yaml = new Yaml();
 
-    public YamlFile(LanguageResourceCredentials credentials) {
-        this.file = new File(credentials.getString("fileLocation"));
-    }
+  public YamlFile(LanguageResourceCredentials credentials) {
+    this.file = new File(credentials.getString("fileLocation"));
+  }
 
-    public Map<String, ResourceLanguage> getLanguages() {
-        try(InputStream inputStream = new FileInputStream(file)) {
-            Map<String, Map<String, String>> objects = this.yaml.load(inputStream);
-            return objects.entrySet().stream().map(entry -> new HashMap.SimpleEntry<>(entry.getKey(),
-                    new ResourceLanguage(entry.getKey(), entry.getValue())))
-                    .collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue));
-        } catch(IOException e) {
-            throw new RuntimeException(e);
-        }
+  public Map<String, ResourceLanguage> getLanguages() {
+    try (InputStream inputStream = new FileInputStream(file)) {
+      Map<String, Map<String, String>> objects = this.yaml.load(inputStream);
+      return objects.entrySet().stream().map(entry -> new HashMap.SimpleEntry<>(entry.getKey(),
+          new ResourceLanguage(entry.getKey(), entry.getValue())))
+          .collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue));
+    } catch (IOException e) {
+      throw new RuntimeException(e);
     }
+  }
 }

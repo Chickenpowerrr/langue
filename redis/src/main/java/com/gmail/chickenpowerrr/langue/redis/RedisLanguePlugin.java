@@ -9,19 +9,20 @@ import java.util.HashSet;
 
 public class RedisLanguePlugin extends LanguePlugin {
 
-    @Override
-    public Collection<String> getAvailableLanguageResourceUpdaters() {
-        return new HashSet<String>() {{
-            add("Redis");
-        }};
-    }
+  @Override
+  public Collection<String> getAvailableLanguageResourceUpdaters() {
+    return new HashSet<String>() {{
+      add("Redis");
+    }};
+  }
 
-    @Override
-    public LanguageResourceUpdater getLanguageResourceUpdater(String name, LanguageResourceCredentials credentials,
-                                                              String... channels) {
-        if(name.equals("Redis")) {
-            return new RedisLanguageResourceUpdater(credentials, channels);
-        }
-        return null;
+  @Override
+  public LanguageResourceUpdater getLanguageResourceUpdater(String name,
+      LanguageResourceCredentials credentials,
+      String... channels) {
+    if (name.equals("Redis")) {
+      return new RedisLanguageResourceUpdater(credentials, channels);
     }
+    return null;
+  }
 }

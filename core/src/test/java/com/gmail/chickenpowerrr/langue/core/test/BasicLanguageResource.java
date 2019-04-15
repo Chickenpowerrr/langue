@@ -10,14 +10,15 @@ import java.util.Map;
 
 public class BasicLanguageResource extends LanguageResource {
 
-    public BasicLanguageResource(Map<String, ResourceLanguage> languages) {
-        super(new PlaceholderManager(new PlaceholderPattern("%%", "%%"), new HashMap<String, String>() {{
-            put("ceo", "John");
+  public BasicLanguageResource(Map<String, ResourceLanguage> languages) {
+    super(
+        new PlaceholderManager(new PlaceholderPattern("%%", "%%"), new HashMap<String, String>() {{
+          put("ceo", "John");
         }}), null, languages);
-    }
+  }
 
-    @Override
-    public void reload() {
+  @Override
+  public void reload() {
 
-    }
+  }
 }

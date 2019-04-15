@@ -11,24 +11,24 @@ import java.util.concurrent.CompletableFuture;
 
 public class RedisLanguageResourceUpdater extends LanguageResourceUpdater {
 
-    private final Collection<Closeable> closeables = new HashSet<>();
+  private final Collection<Closeable> closeables = new HashSet<>();
 
-    public RedisLanguageResourceUpdater(LanguageResourceCredentials credentials, String... channels) {
-        super(channels);
-        RedisDatabase redisDatabase = new RedisDatabase(credentials);
-        this.closeables.add(redisDatabase);
-        CompletableFuture.runAsync(() ->
-                this.closeables.add(new RedisListener(redisDatabase.getJedis(), this, channels)));
-    }
+  public RedisLanguageResourceUpdater(LanguageResourceCredentials credentials, String... channels) {
+    super(channels);
+    RedisDatabase redisDatabase = new RedisDatabase(credentials);
+    this.closeables.add(redisDatabase);
+    CompletableFuture.runAsync(() ->
+        this.closeables.add(new RedisListener(redisDatabase.getJedis(), this, channels)));
+  }
 
-    @Override
-    public void close() {
-        this.closeables.forEach(closeable -> {
-            try {
-                closeable.close();
-            } catch(IOException e) {
-                e.printStackTrace();
-            }
-        });
-    }
+  @Override
+  public void close() {
+    this.closeables.forEach(closeable -> {
+      try {
+        closeable.close();
+      } catch (IOException e) {
+        e.printStackTrace();
+      }
+    });
+  }
 }

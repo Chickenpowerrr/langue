@@ -9,24 +9,24 @@ import java.io.Closeable;
 
 public class RedisDatabase implements Closeable {
 
-    private final JedisPool jedisPool;
+  private final JedisPool jedisPool;
 
-    public RedisDatabase(LanguageResourceCredentials credentials) {
-        JedisPoolConfig jedisPoolConfig = new JedisPoolConfig();
-        jedisPoolConfig.setMaxTotal(credentials.getInt("maxPoolSize"));
+  public RedisDatabase(LanguageResourceCredentials credentials) {
+    JedisPoolConfig jedisPoolConfig = new JedisPoolConfig();
+    jedisPoolConfig.setMaxTotal(credentials.getInt("maxPoolSize"));
 
-        this.jedisPool = new JedisPool(jedisPoolConfig, credentials.getString("host"),
-                credentials.getInt("port"));
+    this.jedisPool = new JedisPool(jedisPoolConfig, credentials.getString("host"),
+        credentials.getInt("port"));
+  }
+
+  public Jedis getJedis() {
+    return this.jedisPool.getResource();
+  }
+
+  @Override
+  public void close() {
+    if (!this.jedisPool.isClosed()) {
+      this.jedisPool.close();
     }
-
-    public Jedis getJedis() {
-        return this.jedisPool.getResource();
-    }
-
-    @Override
-    public void close() {
-        if(!this.jedisPool.isClosed()) {
-            this.jedisPool.close();
-        }
-    }
+  }
 }

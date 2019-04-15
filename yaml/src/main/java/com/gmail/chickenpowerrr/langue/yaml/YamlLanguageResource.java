@@ -8,18 +8,19 @@ import java.util.function.Function;
 
 public class YamlLanguageResource extends LanguageResource {
 
-    private final YamlFile yamlFile;
+  private final YamlFile yamlFile;
 
-    public YamlLanguageResource(PlaceholderManager placeholderManager, Function<String, String> formatter,
-                                 LanguageResourceCredentials credentials) {
-        super(placeholderManager, formatter, null);
-        this.yamlFile = new YamlFile(credentials);
+  public YamlLanguageResource(PlaceholderManager placeholderManager,
+      Function<String, String> formatter,
+      LanguageResourceCredentials credentials) {
+    super(placeholderManager, formatter, null);
+    this.yamlFile = new YamlFile(credentials);
 
-        super.languages = this.yamlFile.getLanguages();
-    }
+    super.languages = this.yamlFile.getLanguages();
+  }
 
-    @Override
-    public void reload() {
-        super.languages = this.yamlFile.getLanguages();
-    }
+  @Override
+  public void reload() {
+    super.languages = this.yamlFile.getLanguages();
+  }
 }

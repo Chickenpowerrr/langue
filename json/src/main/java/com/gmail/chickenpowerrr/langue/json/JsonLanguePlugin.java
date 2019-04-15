@@ -11,20 +11,20 @@ import java.util.function.Function;
 
 public class JsonLanguePlugin extends LanguePlugin {
 
-    @Override
-    public Collection<String> getAvailableLanguageResources() {
-        return new HashSet<String>() {{
-            add("JSON");
-        }};
-    }
+  @Override
+  public Collection<String> getAvailableLanguageResources() {
+    return new HashSet<String>() {{
+      add("JSON");
+    }};
+  }
 
-    @Override
-    public LanguageResource getLanguageResource(String name, PlaceholderManager placeholderManager,
-                                                Function<String, String> formatter,
-                                                LanguageResourceCredentials credentials) {
-        if(name.equals("JSON")) {
-            return new JsonLanguageResource(placeholderManager, formatter, credentials);
-        }
-        return null;
+  @Override
+  public LanguageResource getLanguageResource(String name, PlaceholderManager placeholderManager,
+      Function<String, String> formatter,
+      LanguageResourceCredentials credentials) {
+    if (name.equals("JSON")) {
+      return new JsonLanguageResource(placeholderManager, formatter, credentials);
     }
+    return null;
+  }
 }

@@ -8,18 +8,19 @@ import java.util.function.Function;
 
 public class JsonLanguageResource extends LanguageResource {
 
-    private final JsonFile jsonFile;
+  private final JsonFile jsonFile;
 
-    public JsonLanguageResource(PlaceholderManager placeholderManager, Function<String, String> formatter,
-                                LanguageResourceCredentials credentials) {
-        super(placeholderManager, formatter, null);
-        this.jsonFile = new JsonFile(credentials);
+  public JsonLanguageResource(PlaceholderManager placeholderManager,
+      Function<String, String> formatter,
+      LanguageResourceCredentials credentials) {
+    super(placeholderManager, formatter, null);
+    this.jsonFile = new JsonFile(credentials);
 
-        super.languages = this.jsonFile.getLanguages();
-    }
+    super.languages = this.jsonFile.getLanguages();
+  }
 
-    @Override
-    public void reload() {
-        super.languages = this.jsonFile.getLanguages();
-    }
+  @Override
+  public void reload() {
+    super.languages = this.jsonFile.getLanguages();
+  }
 }

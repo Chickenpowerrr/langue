@@ -11,55 +11,61 @@ import java.util.function.Function;
 
 public class LanguageResourceFactory {
 
-    private final Map<String, LanguePlugin> languageResources = new HashMap<>();
+  private final Map<String, LanguePlugin> languageResources = new HashMap<>();
 
-    public LanguageResourceFactory() {
-        for(LanguePlugin plugin : AutoLoaderApi.getApi()
-                    .loadClasses(LanguePlugin.class, "com.gmail.chickenpowerrr.langue", LanguePlugin.class)) {
-            for(String languageResource : plugin.getAvailableLanguageResources()) {
-                this.languageResources.put(languageResource, plugin);
-            }
-        }
+  public LanguageResourceFactory() {
+    for (LanguePlugin plugin : AutoLoaderApi.getApi()
+        .loadClasses(LanguePlugin.class, "com.gmail.chickenpowerrr.langue", LanguePlugin.class)) {
+      for (String languageResource : plugin.getAvailableLanguageResources()) {
+        this.languageResources.put(languageResource, plugin);
+      }
     }
+  }
 
-    public Collection<String> getAvailableLanguages() {
-        return this.languageResources.keySet();
-    }
+  public Collection<String> getAvailableLanguages() {
+    return this.languageResources.keySet();
+  }
 
-    public LanguageResource getLanguageResource(String name, PlaceholderManager placeholderManager,
-                                                Function<String, String> formatter,
-                                                LanguageResourceCredentials credentials) {
-        return this.languageResources.get(name).getLanguageResource(name, placeholderManager, formatter, credentials);
-    }
+  public LanguageResource getLanguageResource(String name, PlaceholderManager placeholderManager,
+      Function<String, String> formatter,
+      LanguageResourceCredentials credentials) {
+    return this.languageResources.get(name)
+        .getLanguageResource(name, placeholderManager, formatter, credentials);
+  }
 
-    public final LanguageResource getLanguageResource(String name, Function<String, String> formatter,
-                                                      LanguageResourceCredentials credentials) {
-        return getLanguageResource(name, null, formatter, credentials);
-    }
+  public final LanguageResource getLanguageResource(String name, Function<String, String> formatter,
+      LanguageResourceCredentials credentials) {
+    return getLanguageResource(name, null, formatter, credentials);
+  }
 
-    public final LanguageResource getLanguageResource(String name, PlaceholderManager placeholderManager,
-                                                      LanguageResourceCredentials credentials) {
-        return getLanguageResource(name, placeholderManager, null, credentials);
-    }
+  public final LanguageResource getLanguageResource(String name,
+      PlaceholderManager placeholderManager,
+      LanguageResourceCredentials credentials) {
+    return getLanguageResource(name, placeholderManager, null, credentials);
+  }
 
-    public final LanguageResource getLanguageResource(String name, PlaceholderManager placeholderManager,
-                                                      Function<String, String> formatter) {
-        return getLanguageResource(name, placeholderManager, formatter, null);
-    }
+  public final LanguageResource getLanguageResource(String name,
+      PlaceholderManager placeholderManager,
+      Function<String, String> formatter) {
+    return getLanguageResource(name, placeholderManager, formatter, null);
+  }
 
-    public final LanguageResource getLanguageResource(String name, LanguageResourceCredentials credentials) {
-        return getLanguageResource(name, null, null, credentials);
-    }
+  public final LanguageResource getLanguageResource(String name,
+      LanguageResourceCredentials credentials) {
+    return getLanguageResource(name, null, null, credentials);
+  }
 
-    public final LanguageResource getLanguageResource(String name, Function<String, String> formatter) {
-        return getLanguageResource(name, null, formatter, null);
-    }
+  public final LanguageResource getLanguageResource(String name,
+      Function<String, String> formatter) {
+    return getLanguageResource(name, null, formatter, null);
+  }
 
-    public final LanguageResource getLanguageResource(String name, PlaceholderManager placeholderManager) {
-        return getLanguageResource(name, placeholderManager, null, null);
-    }
+  public final LanguageResource getLanguageResource(String name,
+      PlaceholderManager placeholderManager) {
+    return getLanguageResource(name, placeholderManager, null, null);
+  }
 
-    public final LanguageResource getLanguageResource(String name) {
-        return getLanguageResource(name, null, null, null);
-    }
+  public final LanguageResource getLanguageResource(String name) {
+    return getLanguageResource(name, null, null, null);
+  }
 }
