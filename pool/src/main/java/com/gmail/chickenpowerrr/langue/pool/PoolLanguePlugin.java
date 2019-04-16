@@ -9,6 +9,13 @@ import java.util.Collection;
 import java.util.HashSet;
 import java.util.function.Function;
 
+/**
+ * This class contains all of the methods needed to use a basic Pool that contains the
+ * relevant language information
+ *
+ * @author Chickenpowerrr
+ * @since 1.0.0
+ */
 public class PoolLanguePlugin extends LanguePlugin {
 
   @Override
@@ -23,7 +30,7 @@ public class PoolLanguePlugin extends LanguePlugin {
       Function<String, String> formatter,
       LanguageResourceCredentials credentials) {
     if (name.equals("Pool")) {
-      return new PoolLanguageResource(placeholderManager, formatter, credentials);
+      return new PoolLanguageResource(credentials);
     }
     return null;
   }

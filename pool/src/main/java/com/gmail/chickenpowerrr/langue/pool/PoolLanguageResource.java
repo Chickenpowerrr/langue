@@ -1,20 +1,26 @@
 package com.gmail.chickenpowerrr.langue.pool;
 
-import com.gmail.chickenpowerrr.langue.core.placeholder.PlaceholderManager;
 import com.gmail.chickenpowerrr.langue.core.resource.LanguageResource;
 import com.gmail.chickenpowerrr.langue.core.resource.LanguageResourceCredentials;
-
 import java.util.Map;
-import java.util.function.Function;
 
+/**
+ * This class combines multiple resources to one central resource
+ *
+ * @author Chickenpowerrr
+ * @since 1.0.0
+ */
 public class PoolLanguageResource extends LanguageResource {
 
   private final Map<String, LanguageResource> languagesResources;
 
+  /**
+   * Combines all of the resources based on the resources given in the credentials
+   *
+   * @param credentials contains all of the available LanguageResource
+   */
   @SuppressWarnings("unchecked")
-  public PoolLanguageResource(PlaceholderManager placeholderManager,
-      Function<String, String> formatter,
-      LanguageResourceCredentials credentials) {
+  public PoolLanguageResource(LanguageResourceCredentials credentials) {
     super(null, null, null);
 
     this.languagesResources = (Map<String, LanguageResource>) credentials.getObject("parts");
