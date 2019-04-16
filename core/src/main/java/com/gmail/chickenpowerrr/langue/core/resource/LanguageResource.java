@@ -107,7 +107,7 @@ public abstract class LanguageResource {
   /**
    * Returns if this resource can get updated by a LanguageResourceUpdater
    */
-  public boolean acceptsUpdate() {
+  public boolean acceptsUpdates() {
     return true;
   }
 
@@ -117,7 +117,7 @@ public abstract class LanguageResource {
    * @param update the update that should be preformed
    */
   public void update(Update update) {
-    if (acceptsUpdate()) {
+    if (acceptsUpdates()) {
       if (update instanceof AddLanguagesUpdate) {
         update((AddLanguagesUpdate) update);
       } else if (update instanceof AddTranslationsUpdate) {
@@ -138,7 +138,7 @@ public abstract class LanguageResource {
    * @param addLanguagesUpdate which languages should get added
    */
   private void update(AddLanguagesUpdate addLanguagesUpdate) {
-    if (acceptsUpdate()) {
+    if (acceptsUpdates()) {
       this.languages.putAll(addLanguagesUpdate.getLanguages());
     }
   }
@@ -149,7 +149,7 @@ public abstract class LanguageResource {
    * @param addTranslationsUpdate which translations should get added
    */
   private void update(AddTranslationsUpdate addTranslationsUpdate) {
-    if (acceptsUpdate()) {
+    if (acceptsUpdates()) {
       addTranslationsUpdate.getValues().forEach((language, translations) -> {
         if (this.languages.containsKey(language)) {
           this.languages.get(language).addTranslations(translations);
@@ -164,7 +164,7 @@ public abstract class LanguageResource {
    * @param deleteLanguagesUpdate which languages should get deleted
    */
   private void update(DeleteLanguagesUpdate deleteLanguagesUpdate) {
-    if (acceptsUpdate()) {
+    if (acceptsUpdates()) {
       deleteLanguagesUpdate.getLanguages().forEach(this.languages::remove);
     }
   }
@@ -175,7 +175,7 @@ public abstract class LanguageResource {
    * @param deleteTranslationsUpdate which translations should get deleted
    */
   private void update(DeleteTranslationsUpdate deleteTranslationsUpdate) {
-    if (acceptsUpdate()) {
+    if (acceptsUpdates()) {
       this.languages.values().forEach(language -> language.removeTranslations(
           deleteTranslationsUpdate.getMessageKeys()));
     }

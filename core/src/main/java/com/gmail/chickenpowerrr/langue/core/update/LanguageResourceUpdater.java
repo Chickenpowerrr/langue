@@ -12,14 +12,31 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.stream.Collectors;
 
-public class LanguageResourceUpdater implements Closeable {
+/**
+ * This class contains all methods needed to be able to update resources
+ *
+ * @author Chickenpowerrr
+ * @since 1.0.0
+ */
+public abstract class LanguageResourceUpdater implements Closeable {
 
   private final String[] channels;
 
+  /**
+   * Adds all channels this updater should notify when an updates comes in
+   *
+   * @param channels all channels this updater should notify when an updates comes in
+   */
   public LanguageResourceUpdater(String... channels) {
     this.channels = channels;
   }
 
+  /**
+   * Adds given languages to all the subscribed resources
+   *
+   * @param languageInfo a map with the name of the language as the key and the translations as the
+   * value
+   */
   public void addLanguages(Map<String, Map<String, String>> languageInfo) {
     Map<String, ResourceLanguage> languages = languageInfo.entrySet().stream()
         .map(entry -> new HashMap.SimpleEntry<>(
@@ -31,6 +48,12 @@ public class LanguageResourceUpdater implements Closeable {
     }
   }
 
+  /**
+   * Adds given translations to all the subscribed resources
+   *
+   * @param translations a map with the name of the language as the key and the translations as the
+   * value
+   */
   public void addTranslations(Map<String, Map<String, String>> translations) {
     for (String channel : this.channels) {
       LanguageResourceUpdateManager.getInstance()
@@ -38,6 +61,11 @@ public class LanguageResourceUpdater implements Closeable {
     }
   }
 
+  /**
+   * Deletes the given languages from all of the subscribed resources
+   *
+   * @param languages the languages that should get deleted
+   */
   public void deleteLanguages(Collection<String> languages) {
     for (String channel : this.channels) {
       LanguageResourceUpdateManager.getInstance()
@@ -45,6 +73,11 @@ public class LanguageResourceUpdater implements Closeable {
     }
   }
 
+  /**
+   * Deletes the given translations from all of the subscribed resources
+   *
+   * @param messageKeys the translations that should get deleted
+   */
   public void deleteTranslations(Collection<String> messageKeys) {
     for (String channel : this.channels) {
       LanguageResourceUpdateManager.getInstance()
