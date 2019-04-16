@@ -39,7 +39,7 @@ public class RedisListener extends JedisPubSub implements Closeable {
     this.jedis.subscribe(this, channels);
     this.updater = updater;
   }
-  
+
   @Override
   public void onMessage(String channel, String message) {
     JsonObject totalObject = this.jsonParser.parse(message).getAsJsonObject();

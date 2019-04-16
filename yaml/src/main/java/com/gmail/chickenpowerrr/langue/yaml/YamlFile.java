@@ -11,16 +11,32 @@ import java.io.InputStream;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.stream.Collectors;
-
+/**
+ * This class contains all of the methods needed to read a basic Yaml file that contains the
+ * relevant language information
+ *
+ * @author Chickenpowerrr
+ * @since 1.0.0
+ */
 public class YamlFile {
 
   private final File file;
   private final Yaml yaml = new Yaml();
 
+  /**
+   * Reads the file that contains all of the language information
+   *
+   * @param credentials the file that contains the language information
+   */
   public YamlFile(LanguageResourceCredentials credentials) {
     this.file = new File(credentials.getString("fileLocation"));
   }
 
+  /**
+   * Reads all of the available languages from the Yaml file
+   *
+   * @return all of the available languages
+   */
   public Map<String, ResourceLanguage> getLanguages() {
     try (InputStream inputStream = new FileInputStream(file)) {
       Map<String, Map<String, String>> objects = this.yaml.load(inputStream);

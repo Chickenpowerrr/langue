@@ -9,6 +9,12 @@ import java.util.Collection;
 import java.util.HashSet;
 import java.util.function.Function;
 
+/**
+ * This class allows the Yaml extension to get loaded
+ *
+ * @author Chickenpowerrr
+ * @since 1.0.0
+ */
 public class YamlLanguePlugin extends LanguePlugin {
 
   @Override
