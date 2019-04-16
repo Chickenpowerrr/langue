@@ -9,10 +9,22 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.stream.Collectors;
 
+/**
+ * This class contains all of the methods needed to read a basic SQL database that contains the
+ * relevant language information
+ *
+ * @author Chickenpowerrr
+ * @since 1.0.0
+ */
 public class MySqlDatabase {
 
   private final HikariDataSource dataSource = new HikariDataSource();
 
+  /**
+   * Reads the database that contains all of the language information
+   *
+   * @param credentials the database that contains the language information
+   */
   public MySqlDatabase(LanguageResourceCredentials credentials) {
     this.dataSource.setMaximumPoolSize(credentials.getInt("max_pool_size"));
     this.dataSource.setDataSourceClassName("com.mysql.jdbc.jdbc2.optional.MysqlDataSource");
@@ -64,6 +76,11 @@ public class MySqlDatabase {
     }
   }
 
+  /**
+   * Retrieves all of the available languages from the database
+   *
+   * @return all of the available languages
+   */
   public Map<String, ResourceLanguage> getLanguages() {
     Map<String, Map<String, String>> resourceLanguages = new HashMap<>();
 

@@ -14,7 +14,8 @@ import java.util.Map;
 import java.util.stream.Collectors;
 
 /**
- * This class contains all of the methods needed to read a basic Json file that contains the relevant language information
+ * This class contains all of the methods needed to read a basic Json file that contains the
+ * relevant language information
  *
  * @author Chickenpowerrr
  * @since 1.0.0
@@ -25,7 +26,7 @@ public class JsonFile {
   private final Gson gson = new Gson();
 
   /**
-   * Saves the file that contains all of the language information
+   * Reads the file that contains all of the language information
    *
    * @param credentials the file that contains the language information
    */
