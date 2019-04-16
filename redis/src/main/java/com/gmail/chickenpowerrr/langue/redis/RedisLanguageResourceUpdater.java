@@ -9,10 +9,22 @@ import java.util.Collection;
 import java.util.HashSet;
 import java.util.concurrent.CompletableFuture;
 
+/**
+ * This class can be used to update resources through the channels
+ *
+ * @author Chickenpowerrr
+ * @since 1.0.0
+ */
 public class RedisLanguageResourceUpdater extends LanguageResourceUpdater {
 
   private final Collection<Closeable> closeables = new HashSet<>();
 
+  /**
+   * Connects to the Redis database and adds the listener
+   *
+   * @param credentials the credentials to connect to the Redis DB
+   * @param channels the channels that should get notified when an update comes in
+   */
   public RedisLanguageResourceUpdater(LanguageResourceCredentials credentials, String... channels) {
     super(channels);
     RedisDatabase redisDatabase = new RedisDatabase(credentials);

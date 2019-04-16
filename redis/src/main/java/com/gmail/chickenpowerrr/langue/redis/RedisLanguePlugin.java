@@ -7,6 +7,12 @@ import com.gmail.chickenpowerrr.langue.core.update.LanguageResourceUpdater;
 import java.util.Collection;
 import java.util.HashSet;
 
+/**
+ * This class allows the Redis extension to get loaded
+ *
+ * @author Chickenpowerrr
+ * @since 1.0.0
+ */
 public class RedisLanguePlugin extends LanguePlugin {
 
   @Override

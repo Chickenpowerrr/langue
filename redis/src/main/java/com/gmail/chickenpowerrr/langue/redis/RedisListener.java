@@ -12,6 +12,12 @@ import java.lang.reflect.Type;
 import java.util.Collection;
 import java.util.Map;
 
+/**
+ * This class is used to handle the updates through the Redis Pub/Sub
+ *
+ * @author Chickenpowerrr
+ * @since 1.0.0
+ */
 public class RedisListener extends JedisPubSub implements Closeable {
 
   private final Jedis jedis;
@@ -21,12 +27,19 @@ public class RedisListener extends JedisPubSub implements Closeable {
   private final Type collectionType = new TypeToken<Collection<String>>() {}.getType();
   private final RedisLanguageResourceUpdater updater;
 
+  /**
+   * Subscribes to the Pub/Sub
+   *
+   * @param jedis the Jedis instance with the connection to the Redis DB
+   * @param updater the object that passes updates to the resources
+   * @param channels the Pub/Sub channels this listener uses
+   */
   public RedisListener(Jedis jedis, RedisLanguageResourceUpdater updater, String... channels) {
     this.jedis = jedis;
     this.jedis.subscribe(this, channels);
     this.updater = updater;
   }
-
+  
   @Override
   public void onMessage(String channel, String message) {
     JsonObject totalObject = this.jsonParser.parse(message).getAsJsonObject();
