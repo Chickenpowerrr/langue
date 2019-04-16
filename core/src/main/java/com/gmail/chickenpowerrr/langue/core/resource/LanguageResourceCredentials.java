@@ -3,6 +3,12 @@ package com.gmail.chickenpowerrr.langue.core.resource;
 import java.util.HashMap;
 import java.util.Map;
 
+/**
+ * This class contains the credentials needed to login to a resource
+ *
+ * @author Chickenpowerrr
+ * @since 1.0.0
+ */
 public class LanguageResourceCredentials {
 
   private final Map<String, Object> properties;

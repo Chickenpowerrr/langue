@@ -20,7 +20,7 @@ public class CoreTest {
 
   @Test
   public void addPluginTest() {
-    assertTrue(new LanguageResourceFactory().getAvailableLanguages().contains("BasicResource"));
+    assertTrue(new LanguageResourceFactory().getAvailableLanguageResources().contains("BasicResource"));
   }
 
   @Test
