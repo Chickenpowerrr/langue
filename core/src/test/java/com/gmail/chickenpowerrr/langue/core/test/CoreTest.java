@@ -96,7 +96,7 @@ public class CoreTest {
     assertNotNull(languageResource.getLanguage("nederlands"));
     assertNotNull(languageResource.getLanguage("english"));
 
-    LanguageResourceUpdater updater = new LanguageResourceUpdater("Test");
+    LanguageResourceUpdater updater = new LanguageResourceUpdater("Test"){};
     Map<String, Map<String, String>> languages = new HashMap<>();
     languages.put("deutsch", new HashMap<String, String>() {{
       put("hello_world", "Hallo Welt");
@@ -120,7 +120,7 @@ public class CoreTest {
     assertNotNull(languageResource.getLanguage("nederlands"));
     assertNotNull(languageResource.getLanguage("english"));
 
-    LanguageResourceUpdater updater = new LanguageResourceUpdater("Test");
+    LanguageResourceUpdater updater = new LanguageResourceUpdater("Test"){};
     Map<String, Map<String, String>> languages = new HashMap<>();
     languages.put("nederlands", new HashMap<String, String>() {{
       put("hello_there", "Hallo Daar");
@@ -143,7 +143,7 @@ public class CoreTest {
     assertNotNull(languageResource.getLanguage("english"));
     assertNull(languageResource.getLanguage("deutsch"));
 
-    LanguageResourceUpdater updater = new LanguageResourceUpdater("Test");
+    LanguageResourceUpdater updater = new LanguageResourceUpdater("Test"){};
     Collection<String> languages = new HashSet<String>() {{
       add("nederlands");
     }};
@@ -162,7 +162,7 @@ public class CoreTest {
     assertNotNull(languageResource.getMessage("english", "hello_world"));
     assertNotNull(languageResource.getMessage("nederlands", "hello_world"));
 
-    LanguageResourceUpdater updater = new LanguageResourceUpdater("Test");
+    LanguageResourceUpdater updater = new LanguageResourceUpdater("Test"){};
     Collection<String> translations = new HashSet<String>() {{
       add("hello_world");
     }};
